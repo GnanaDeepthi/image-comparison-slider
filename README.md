@@ -39,13 +39,10 @@ ImageTwo="https://www.aecus.com/wp-content/uploads/2015/05/HCL-logo-01B-05.jpg">
  
 ```
 
-| Input | Purpose |
 
-| ------ | ------ |
+##### ImageOne --->   Before comparison of Image 
 
-| ImageOne |   Before comparison of Image |
-
-| ImageTwo | After Comparison of Image  |
+ ##### ImageTwo  ---> After Comparison of Image 
 
 
 

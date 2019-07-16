@@ -30,19 +30,20 @@ export class ImageCompareComponent implements OnInit {
     this.afterImage.style.width = (this.wrapperReference.nativeElement.offsetWidth) + 'px';
     this.beforeImageWidth.style.width = (this.wrapperReference.nativeElement.offsetWidth ) + 'px';
 
-    document.querySelector('.scroller').addEventListener('mousedown', this.mousedown);
-    document.addEventListener('mouseup', this.mouseup);
-    document.addEventListener('mouseleave', this.mouseleave);
-    document.addEventListener('mousemove', this.mousemove);
+//     document.querySelector('.scroller').addEventListener('mousedown', this.mousedown);
+//     document.addEventListener('mouseup', this.mouseup);
+//     document.addEventListener('mouseleave', this.mouseleave);
+//     document.addEventListener('mousemove', this.mousemove);
 
-    document.querySelector('.scroller').addEventListener('touchstart', this.mousedown);
-    document.addEventListener('touchend', this.mouseleave);
-    document.addEventListener('touchcancel', this.mouseleave);
+//     document.querySelector('.scroller').addEventListener('touchstart', this.mousedown);
+//     document.addEventListener('touchend', this.mouseleave);
+//     document.addEventListener('touchcancel', this.mouseleave);
 
   }
 
   @HostListener('mousedown', ['$event'])
-  mousedown(event) {
+   @HostListener('touchstart', ['$event'])
+  onMouseDown(event){
     event.preventDefault();
     this.move = true;
     this.color = <HTMLElement>document.querySelector('.scroller');
@@ -50,12 +51,14 @@ export class ImageCompareComponent implements OnInit {
   }
 
   @HostListener('mouseleave')
-  mouseleave() {
+  @HostListener('touchend')
+  @HostListener('touchcancel')
+ onMouseLeave() {
     this.move = false;
   }
 
   @HostListener('mousemove', ['$event'])
-  mousemove(event) {
+  onMouseMove(event) {
     if (!this.move) {
       return;
     }
@@ -66,7 +69,7 @@ export class ImageCompareComponent implements OnInit {
   }
 
   @HostListener('mouseup')
-  mouseup() {
+  onMouseUp() {
     this.move = false;
     this.color.style.background = 'grey';
   }
